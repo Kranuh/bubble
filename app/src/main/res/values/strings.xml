@@ -3,4 +3,5 @@
     <string name="welcome">Welkom!</string>
     <string name="intro">Dit is een faketekst. Alles wat hier staat is slechts om een indruk te geven van het grafische effect van tekst op deze plek. Wat u hier leest is een voorbeeldtekst. Deze wordt later vervangen door de uiteindelijke tekst, die nu nog niet bekend is.</string>
     <string name="choose_sources">Kies uw bronnen</string>
+    <string name="select_ages">Selecteer uw leeftijd</string>
 </resources>

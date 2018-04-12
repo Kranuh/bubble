@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import pinch.bubble.R
 
-class OnboardingPreferredArticlesFragment : OnboardingFragment() {
+class OnboardingBubbleFragment : OnboardingFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_onboarding_articles, container, false)
+        return inflater.inflate(R.layout.fragment_onboarding_bubbles, container, false)
     }
 }

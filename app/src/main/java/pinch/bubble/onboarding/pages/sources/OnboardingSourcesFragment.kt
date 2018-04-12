@@ -16,11 +16,13 @@ import pinch.bubble.model.Source
 import pinch.bubble.onboarding.OnboardingActivity
 import pinch.bubble.onboarding.pages.OnboardingFragment
 
-class OnboardingSourcesFragment : OnboardingFragment(), Observer<Resource<List<Source>>> {
+class OnboardingSourcesFragment : OnboardingFragment(), Observer<Resource<List<Pair<Source, Boolean>>>> {
 
     private val picasso: Picasso by inject()
     private val onboardingAdapter: OnboardingSourcesAdapter by lazy {
-        OnboardingSourcesAdapter(picasso)
+        OnboardingSourcesAdapter(picasso, { id ->
+            storeSelectedName(id)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,14 +39,24 @@ class OnboardingSourcesFragment : OnboardingFragment(), Observer<Resource<List<S
 
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = onboardingAdapter
+        recyclerView.itemAnimator = null
+
+        //set up floating action button
+        sourcesFloatingActionButton.setOnClickListener {
+            (activity as OnboardingActivity).navigateToNextPage()
+        }
     }
 
     private fun observeSources() {
         (activity as OnboardingActivity).getViewModel().getSources().observe(this, this)
     }
 
-    override fun onChanged(data: Resource<List<Source>>?) {
-        when(data?.status) {
+    private fun storeSelectedName(id: Int) {
+        (activity as OnboardingActivity).getViewModel().setSelectedId(id)
+    }
+
+    override fun onChanged(data: Resource<List<Pair<Source, Boolean>>>?) {
+        when (data?.status) {
             Status.LOADING -> sourcesProgressBar.visibility = View.VISIBLE
             Status.ERROR -> {
                 sourcesProgressBar.visibility = View.GONE

@@ -15,8 +15,15 @@ import pinch.bubble.repos.SourcesRepository
 class OnboardingViewModel : ViewModel(), KoinComponent {
 
     private val sourcesRepository: SourcesRepository by inject()
-    private var sourcesLiveData: MutableLiveData<Resource<List<Source>>> = MutableLiveData()
+
+    private var sourcesLiveData: MutableLiveData<Resource<List<Pair<Source, Boolean>>>> = MutableLiveData()
+    private var sourcesPostData: MutableLiveData<Resource<Int>> = MutableLiveData()
     private var disposable = Disposables.disposed()
+
+    private var lastSources: List<Source> = ArrayList()
+    private val selectedIds = ArrayList<Int>()
+
+    private var selectedAge = "18"
 
     fun fetchSources() {
         sourcesLiveData.value = Resource(Status.LOADING)
@@ -26,17 +33,61 @@ class OnboardingViewModel : ViewModel(), KoinComponent {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ data ->
-                    sourcesLiveData.value = Resource(Status.SUCCESS, data)
+                    setSources(data)
                 }, { error ->
                     sourcesLiveData.value = Resource(Status.ERROR, error.message)
                 })
     }
 
-    fun getSources(): MutableLiveData<Resource<List<Source>>> = sourcesLiveData
+    private fun setSources(sources: List<Source>) {
+        lastSources = sources
+
+        val sourcesWithState = ArrayList<Pair<Source, Boolean>>()
+        for (source in sources) {
+            if(selectedIds.contains(source.id)) {
+                sourcesWithState.add(source to true)
+            } else {
+                sourcesWithState.add(source to false)
+            }
+        }
+
+        sourcesLiveData.value = Resource(Status.SUCCESS, sourcesWithState)
+    }
+
+    fun getSources(): MutableLiveData<Resource<List<Pair<Source, Boolean>>>> = sourcesLiveData
+
+    fun setSelectedId(id: Int) {
+        // check whether its already stored
+        if(selectedIds.contains(id)) {
+            selectedIds.remove(id)
+        } else {
+            selectedIds.add(id)
+        }
+
+        setSources(lastSources)
+    }
+
+    fun postSources(): MutableLiveData<Resource<Int>> {
+        sourcesPostData.value = Resource(Status.LOADING)
+
+        sourcesRepository.postSource(selectedAge, selectedIds)
+                .subscribe({
+                    sourcesPostData.value = Resource(Status.SUCCESS, 200)
+                }, { error ->
+                    sourcesPostData.value = Resource(Status.ERROR, error.message)
+                })
+
+        return sourcesPostData
+    }
+
 
     override fun onCleared() {
         super.onCleared()
         disposable.dispose()
+    }
+
+    fun setAge(charSequence: CharSequence) {
+        selectedAge = charSequence.toString()
     }
 
 }
