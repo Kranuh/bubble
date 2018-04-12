@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.injectGradleDependencies = { apply from: file("$rootDir/dependencies.gradle")}
+
     ext.kotlin_version = '1.2.30'
     repositories {
         google()
@@ -24,4 +26,9 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+subprojects {
+    // inject dependencies
+    injectGradleDependencies()
 }

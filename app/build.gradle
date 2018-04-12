@@ -4,12 +4,15 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion sdk.compileVersion
+    buildToolsVersion sdk.buildToolsVersion
     defaultConfig {
         applicationId "pinch.bubble"
-        minSdkVersion 24
-        targetSdkVersion 27
+        minSdkVersion sdk.minVersion
+        targetSdkVersion sdk.targetVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,10 +27,41 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    implementation libraries.kotlin
+
+    implementation libraries.picasso
+
+    implementation libraries.moshi //check $versions. for comments on the moshi version we're using
+    implementation libraries.okHttp
+    implementation libraries.okHttpLoggingInterceptor
+    implementation libraries.rxjava
+    implementation libraries.rxkotlin
+    implementation libraries.rxandroid
+    implementation libraries.retrofit
+    implementation libraries.retrofitConverter
+    implementation libraries.retrofitRxJavaAdapter
+
+    // support
+    implementation libraries.supportAnnotations
+    implementation libraries.supportAppCompat
+    implementation libraries.supportDesign
+    implementation libraries.supportRecyclerView
+    implementation libraries.constraintLayout
+
+    // architecture
+    implementation libraries.androidArchRuntime
+    implementation libraries.androidArchExtensions
+    kapt libraries.androidArchCompiler
+    implementation libraries.room
+    kapt libraries.roomCompiler
+    implementation libraries.roomRxJava
+
+    // Koin
+    implementation "org.koin:koin-android:0.9.1"
+    testCompile "org.koin:koin-test:0.9.1"
 }
