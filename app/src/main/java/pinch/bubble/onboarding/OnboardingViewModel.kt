@@ -71,6 +71,8 @@ class OnboardingViewModel : ViewModel(), KoinComponent {
         sourcesPostData.value = Resource(Status.LOADING)
 
         sourcesRepository.postSource(selectedAge, selectedIds)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     sourcesPostData.value = Resource(Status.SUCCESS, 200)
                 }, { error ->

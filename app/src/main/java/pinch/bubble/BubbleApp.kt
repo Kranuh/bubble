@@ -7,6 +7,6 @@ class BubbleApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin(this, listOf(sourcesRepoModule, retrofitModule, okHttpClientModule, apiModule, moshiModule, picassoModule))
+        startKoin(this, listOf(sourcesRepoModule, retrofitModule, okHttpClientModule, apiModule, moshiModule, picassoModule, topicsRepoModule))
     }
 }
