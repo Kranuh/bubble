@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.topic_item.view.*
 import pinch.bubble.R
 import pinch.bubble.model.Topic
@@ -32,13 +33,15 @@ class TopicsAdapter(private val onTopicSelected: (id: Int) -> Unit) : ListAdapte
 class TopicViewHolder(onTopicSelected: (id: Int) -> Unit, itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val topicTitle = itemView.topicTitle
+    private val topicImage = itemView.topicImage
     private val topicClickListener = TopicClickListener(onTopicSelected)
 
     fun bind(topic: Topic) {
         topicClickListener.currentId = topic.id
-        topicTitle.setOnClickListener(topicClickListener)
-
+        itemView.topicItem.setOnClickListener(topicClickListener)
         topicTitle.text = topic.name
+
+        Picasso.with(itemView.context).load(topic.image).into(topicImage)
     }
 
     private class TopicClickListener(private val onTopicSelected: (id: Int) -> Unit) : View.OnClickListener {

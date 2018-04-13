@@ -7,6 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module.Module
 import org.koin.dsl.module.applicationContext
 import pinch.bubble.network.Api
+import pinch.bubble.network.UserHeaderInterceptor
 import pinch.bubble.repos.SourcesRepository
 import pinch.bubble.repos.TopicsRepository
 import retrofit2.Retrofit
@@ -55,6 +56,7 @@ val okHttpClientModule: Module = applicationContext {
             httpClientBuilder.addInterceptor(loggingInterceptor)
         }
 
+        httpClientBuilder.addInterceptor(UserHeaderInterceptor())
 
         httpClientBuilder.build()
     }

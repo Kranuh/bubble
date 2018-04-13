@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff">
 
+    <TextView
+        android:id="@+id/bubbleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Dit is uw bubble"
+        android:fontFamily="@font/roboto_black"
+        android:textSize="36sp"
+        android:padding="16dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <pinch.bubble.onboarding.pages.bubble.BubbleView
+        android:id="@+id/bubbleView"
+        android:layout_width="0dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="56dp"
+        android:padding="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bubbleHeader"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/bubblesFloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_arrow_forward"
+        app:fabSize="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -9,21 +9,27 @@ import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 import pinch.bubble.Resource
 import pinch.bubble.Status
+import pinch.bubble.base.SingleLiveEvent
+import pinch.bubble.model.Bubble
 import pinch.bubble.model.Source
 import pinch.bubble.repos.SourcesRepository
+import java.util.concurrent.TimeUnit
 
 class OnboardingViewModel : ViewModel(), KoinComponent {
 
     private val sourcesRepository: SourcesRepository by inject()
 
     private var sourcesLiveData: MutableLiveData<Resource<List<Pair<Source, Boolean>>>> = MutableLiveData()
-    private var sourcesPostData: MutableLiveData<Resource<Int>> = MutableLiveData()
+    private var sourcesPostData: SingleLiveEvent<Resource<Int>> = SingleLiveEvent()
+    private var bubblesLiveData: MutableLiveData<Resource<List<Bubble>>> = MutableLiveData()
     private var disposable = Disposables.disposed()
 
     private var lastSources: List<Source> = ArrayList()
     private val selectedIds = ArrayList<Int>()
 
     private var selectedAge = "18"
+
+    var bubbles: List<Bubble> = ArrayList()
 
     fun fetchSources() {
         sourcesLiveData.value = Resource(Status.LOADING)
@@ -91,5 +97,18 @@ class OnboardingViewModel : ViewModel(), KoinComponent {
     fun setAge(charSequence: CharSequence) {
         selectedAge = charSequence.toString()
     }
+
+    fun fetchBubbles() {
+        sourcesRepository.getBubbles()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ bubbles ->
+                    bubblesLiveData.value = Resource(Status.SUCCESS, bubbles)
+                }, { error ->
+                    bubblesLiveData.value = Resource(Status.ERROR, error.message)
+                })
+    }
+
+    fun getBubbleLiveData() = bubblesLiveData
 
 }

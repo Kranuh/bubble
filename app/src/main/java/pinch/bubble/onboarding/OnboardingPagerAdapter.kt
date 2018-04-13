@@ -9,13 +9,14 @@ import pinch.bubble.onboarding.pages.OnboardingWelcomeFragment
 
 class OnboardingPagerAdapter(fragmentManager: FragmentManager) : BaseFragmentStatePagerAdapter<OnboardingFragment>(fragmentManager) {
     companion object {
-        const val ONBOARDING_PAGE_COUNT = 2
+        const val ONBOARDING_PAGE_COUNT = 3
     }
 
     override fun createFragment(position: Int): OnboardingFragment {
         return when(position) {
             0 -> OnboardingWelcomeFragment()
             1 -> OnboardingSourcesFragment()
+            2 -> OnboardingBubbleFragment()
             else -> OnboardingBubbleFragment()
         }
     }

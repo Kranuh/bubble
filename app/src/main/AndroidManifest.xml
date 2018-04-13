@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:name=".BubbleApp"
         android:theme="@style/AppTheme">
-        <activity android:name=".onboarding.OnboardingActivity">
+        <activity android:name=".onboarding.OnboardingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

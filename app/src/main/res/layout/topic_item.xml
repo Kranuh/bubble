@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/topicItem"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="?attr/selectableItemBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/topicImage"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/topicTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:fontFamily="@font/roboto_black"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/topicImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+</android.support.constraint.ConstraintLayout>

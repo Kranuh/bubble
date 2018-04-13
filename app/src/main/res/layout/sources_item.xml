@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="140dp"
+    android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,24 +14,23 @@
             android:id="@+id/sourcesImage"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerCrop" />
+            android:layout_weight="1" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:padding="8dp">
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--android:padding="8dp">-->
 
-            <TextView
-                android:id="@+id/sourcesName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_mono_light"
-                android:textColor="#fff"
-                tools:text="Nu.nl" />
+            <!--<TextView-->
+                <!--android:id="@+id/sourcesName"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:fontFamily="@font/roboto_mono_light"-->
+                <!--android:textColor="#fff"-->
+                <!--tools:text="Nu.nl" />-->
 
-        </FrameLayout>
+        <!--</FrameLayout>-->
 
     </LinearLayout>
 
@@ -38,7 +38,6 @@
         android:id="@+id/selectedStateView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha=".3"
-        android:background="@color/colorPrimary"/>
+        android:background="@drawable/sources_selected_background"/>
 
 </FrameLayout>

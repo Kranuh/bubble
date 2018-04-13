@@ -4,6 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import org.koin.standalone.inject
 import pinch.bubble.base.Repository
+import pinch.bubble.model.Bubble
 import pinch.bubble.model.Source
 import pinch.bubble.model.SourcePost
 import pinch.bubble.network.Api
@@ -22,6 +23,10 @@ class SourcesRepository : Repository<List<Source>> {
 
     fun postSource(age: String, selectedSources: List<Int>): Completable {
         return api.postSources(SourcePost(age, selectedSources))
+    }
+
+    fun getBubbles(): Single<List<Bubble>> {
+        return api.getBubbles()
     }
 
 }

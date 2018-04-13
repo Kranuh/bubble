@@ -41,7 +41,7 @@ class OnboardingSourcesViewHolder(private var picasso: Picasso, itemView: View, 
 .ViewHolder(itemView) {
 
     private val sourceImageView: ImageView = itemView.sourcesImage
-    private val sourcesNameTextView: TextView = itemView.sourcesName
+//    private val sourcesNameTextView: TextView = itemView.sourcesName
     private val sourcesSelectedView = itemView.selectedStateView
     private val clickListener = ClickListener(onItemSelected)
 
@@ -50,7 +50,7 @@ class OnboardingSourcesViewHolder(private var picasso: Picasso, itemView: View, 
         itemView.setOnClickListener(clickListener)
 
         picasso.load(source.first.imageUrl).into(sourceImageView)
-        sourcesNameTextView.text = source.first.name
+//        sourcesNameTextView.text = source.first.name
         val selectedVisibility = if (source.second) View.VISIBLE else View.GONE
         sourcesSelectedView.visibility = selectedVisibility
     }

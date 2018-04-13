@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ProgressBar
@@ -24,13 +25,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:visibility="gone"/>
 
+    <TextView
+        android:id="@+id/topicArticleHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_black"
+        android:textSize="24sp"
+        android:padding="16dp"
+        android:textColor="@color/black"
+        android:text="Kies het artikel dat je het meeste aanspreekt"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/topicDetailRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topicArticleHeader"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

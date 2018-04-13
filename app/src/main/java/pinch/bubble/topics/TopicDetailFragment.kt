@@ -31,7 +31,9 @@ class TopicDetailFragment : Fragment(), Observer<Resource<List<Topic>>> {
 
     private var topicId: Int = -1
     private val articleAdapter: ArticleAdapter by lazy {
-        ArticleAdapter()
+        ArticleAdapter { articleUrl ->
+            navigateToArticle(articleUrl)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +55,12 @@ class TopicDetailFragment : Fragment(), Observer<Resource<List<Topic>>> {
         (activity as TopicActivity).getViewModel().getTopicLiveData().observe(this, this)
     }
 
+    private fun navigateToArticle(url: String) {
+        (activity as TopicActivity).articleSelected(url)
+    }
+
     override fun onChanged(data: Resource<List<Topic>>?) {
-        when(data?.status) {
+        when (data?.status) {
             Status.LOADING -> {
                 topicDetailProgressBar.visibility = View.VISIBLE
                 topicDetailErrorTextView.visibility = View.GONE

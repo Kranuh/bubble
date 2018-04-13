@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">bubble</string>
-    <string name="welcome">Welkom!</string>
-    <string name="intro">Dit is een faketekst. Alles wat hier staat is slechts om een indruk te geven van het grafische effect van tekst op deze plek. Wat u hier leest is een voorbeeldtekst. Deze wordt later vervangen door de uiteindelijke tekst, die nu nog niet bekend is.</string>
-    <string name="choose_sources">Kies uw bronnen</string>
+    <string name="app_name">Bubbleicious</string>
+    <string name="welcome">Lees je vaak nieuws van dezelfde bronnen?</string>
+    <string name="intro">Dan zit je in een nieuwsbubble!</string>
+    <string name="choose_sources">Selecteer je huidige nieuwsbronnen</string>
     <string name="select_ages">Selecteer uw leeftijd</string>
+    <string name="intro2">We helpen je je eigen bubbel door te prikken</string>
 </resources>

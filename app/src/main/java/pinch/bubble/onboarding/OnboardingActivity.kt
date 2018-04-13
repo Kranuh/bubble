@@ -13,6 +13,7 @@ import pinch.bubble.topics.TopicActivity
 class OnboardingActivity : AppCompatActivity() {
 
     private lateinit var viewModel: OnboardingViewModel
+    private var isLocked = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +23,34 @@ class OnboardingActivity : AppCompatActivity() {
         viewModel.fetchSources()
 
         onboardingViewPager.adapter = OnboardingPagerAdapter(supportFragmentManager)
+
+        viewModel.getBubbleLiveData().observe(this, Observer {
+            if (it?.status == Status.SUCCESS) {
+                it.data?.let {
+                    isLocked = false
+                    viewModel.bubbles = it
+                    val currentItem = onboardingViewPager.currentItem
+                    onboardingViewPager.currentItem = currentItem + 1
+                }
+            }
+        })
     }
 
     fun getViewModel() = viewModel
 
     fun navigateToNextPage() {
         val currentItem = onboardingViewPager.currentItem
-        if (currentItem == OnboardingPagerAdapter.ONBOARDING_PAGE_COUNT - 1) {
+        if (currentItem == OnboardingPagerAdapter.ONBOARDING_PAGE_COUNT - 2) {
             viewModel.postSources().observe(this, Observer { result ->
-                if(result?.status == Status.SUCCESS) {
-                    val intent = Intent(this, TopicActivity::class.java)
-                    startActivity(intent)
+                if (result?.status == Status.SUCCESS) {
+                    viewModel.fetchBubbles()
                 }
             })
+        } else if (currentItem == OnboardingPagerAdapter.ONBOARDING_PAGE_COUNT - 1) {
+            if (isLocked) return
+
+            val intent = Intent(this, TopicActivity::class.java)
+            startActivity(intent)
         } else {
             onboardingViewPager.currentItem = currentItem + 1
         }

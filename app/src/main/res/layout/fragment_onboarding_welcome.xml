@@ -4,46 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eeeeee">
+    android:background="#fff">
 
     <TextView
         android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_mono_light"
-        android:text="@string/welcome"
-        android:textColor="@color/black"
-        android:textSize="25sp"
+        android:fontFamily="@font/roboto_black"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
+        android:text="@string/welcome"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/introText"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/introText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_mono_light"
-        android:text="@string/intro"
-        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_black"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText"
+        android:text="@string/intro"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/welcomeText"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/introText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_black"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/intro2"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/introText"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/introSpinnerLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_ages"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_mono_light"
-        app:layout_constraintTop_toBottomOf="@id/introText"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_black"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/introText2"
         app:layout_constraintLeft_toLeftOf="@id/introSpinner"/>
 
     <Spinner
@@ -51,18 +67,21 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/introSpinnerLabel"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-    <android.support.design.widget.FloatingActionButton
+    <Button
         android:id="@+id/welcomeFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@drawable/ic_arrow_forward"
-        app:fabSize="normal"
+        android:text="Help me uit mijn bubble!"
+        android:textColor="#fff"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
