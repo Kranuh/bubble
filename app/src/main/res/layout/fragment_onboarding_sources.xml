@@ -46,7 +46,7 @@
         android:layout_margin="16dp"
         android:src="@drawable/ic_arrow_forward"
         app:fabSize="normal"
-        android:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
