@@ -12,9 +12,14 @@ class BubbleView : View {
 
     private val diameters = ArrayList<Float>()
     private val radii = ArrayList<PointF>()
+
     private val paint1 = Paint()
     private val paint2 = Paint()
     private val paint3 = Paint()
+
+    private val circlePaint1 = Paint()
+    private val circlePaint2 = Paint()
+    private val circlePaint3 = Paint()
 
     private var textPaint1 = Paint()
     private var textPaint2 = Paint()
@@ -37,6 +42,10 @@ class BubbleView : View {
         paint1.color = Color.parseColor(bubbleList[0].color)
         paint2.color = Color.parseColor(bubbleList[1].color)
         paint3.color = Color.parseColor(bubbleList[2].color)
+
+        circlePaint1.color = Color.parseColor("#1A${bubbleList[0].color.substring(1, bubbleList[0].color.length)}")
+        circlePaint2.color = Color.parseColor("#1A${bubbleList[1].color.substring(1, bubbleList[1].color.length)}")
+        circlePaint3.color = Color.parseColor("#1A${bubbleList[2].color.substring(1, bubbleList[2].color.length)}")
 
         paint1.style = Paint.Style.STROKE
         paint1.strokeWidth = 20f
@@ -78,6 +87,10 @@ class BubbleView : View {
         canvas.drawCircle(radii[0].x, radii[0].y + 20, diameters[0] / 2, paint1)
         canvas.drawCircle(radii[1].x, radii[1].y + 20, diameters[1] / 2, paint2)
         canvas.drawCircle(radii[2].x, radii[2].y + 20, diameters[2] / 2, paint3)
+
+        canvas.drawCircle(radii[0].x, radii[0].y + 20, diameters[0] / 2, circlePaint1)
+        canvas.drawCircle(radii[1].x, radii[1].y + 20, diameters[1] / 2, circlePaint2)
+        canvas.drawCircle(radii[2].x, radii[2].y + 20, diameters[2] / 2, circlePaint3)
 
         // draw text
         drawText(bubbleList[0].name, canvas, radii[0].x, radii[0].y, textPaint1)

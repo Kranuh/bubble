@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Bubbleicious</string>
+    <string name="app_name">Bubblicious</string>
     <string name="welcome">Lees je vaak nieuws van dezelfde bronnen?</string>
     <string name="intro">Dan zit je in een nieuwsbubble!</string>
     <string name="choose_sources">Selecteer je huidige nieuwsbronnen</string>
-    <string name="select_ages">Selecteer uw leeftijd</string>
+    <string name="select_ages">Selecteer je leeftijd</string>
     <string name="intro2">We helpen je je eigen bubbel door te prikken</string>
 </resources>

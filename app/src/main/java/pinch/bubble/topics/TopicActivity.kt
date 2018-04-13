@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager
 import pinch.bubble.ArticleFragment
 import pinch.bubble.R
 import android.support.v4.view.GravityCompat
+import android.view.MenuItem
 import android.view.View
 
 
@@ -38,6 +39,17 @@ class TopicActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
                 .add(R.id.topicContainer, TopicListFragment(), "Initial")
                 .commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+
+        return false
     }
 
     fun getViewModel() = viewModel

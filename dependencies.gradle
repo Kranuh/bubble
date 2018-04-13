@@ -1,5 +1,5 @@
 ext.sdk = [
-        minVersion       : 24,
+        minVersion       : 23,
         targetVersion    : 27,
         compileVersion   : 27,
         buildToolsVersion: '27.0.3',
